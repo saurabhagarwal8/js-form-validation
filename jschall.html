@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="./style.css" type="text/css" rel="stylesheet">
+        <title>JS Challenge</title>
+        <script language="javascript">
+            function verify(form){
+                var vname=document.getElementById("username").value;
+                var vpass=document.getElementById("password").value;
+                var vmail=document.getElementById("email").value;
+                var vage=document.getElementById("age").value;
+                //Username
+                var invalid=0;
+                if(vname==""){
+                document.getElementById("name_er").innerHTML = "Please fill the username feild";
+                return false;
+                }
+                else if(vname.length<3){
+                    document.getElementById("name_er").innerHTML = "Username should have atleast 3 characters.";
+                    return false;
+                }
+                else if(vname.charAt(0)>='a' && vname.charAt(0)<='z'){
+                    document.getElementById("name_er").innerHTML = "Username is correct.";
+                    
+                }
+                else if(vname.charAt(0)>='A' && vname.charAt(0)<='Z'){
+                    document.getElementById("name_er").innerHTML = "Username is correct.";
+                    
+                }
+                else if(vname.length>=3){
+                    document.getElementById("name_er").innerHTML = "Username should start with an alphabet.";
+                    return false;
+                }
+
+                //password
+                if(vpass==""){
+                    document.getElementById("pass_er").innerHTML = "Please fill the password feild";
+                    return false;
+                }
+                else if(vpass.length<6){
+                    document.getElementById("pass_er").innerHTML = "Password field should be 6 characters in length";
+                    return false;
+                }
+
+                //email
+                if(vmail==""){
+                    document.getElementById("email_er").innerHTML = "Please fill the e-mail feild";
+                    return false;
+                }
+                else if((vmail.indexOf('.') - vmail.indexOf('@') <=1) || vmail.indexOf('@')==0 || vmail.indexOf('.')==(vmail.length-1) ){
+                    document.getElementById("email_er").innerHTML = "Incorrect email format.";
+                    return false;
+                }
+                
+
+                //age
+                if(vage==""){
+                    document.getElementById("age_er").innerHTML = "Please fill the age feild";
+                    return false;
+                }
+                else if(vage<10 || vage>90){
+                    document.getElementById("age_er").innerHTML = "Age should be between 10 and 90.";
+                    return false;
+                }
+                
+                
+            
+        }
+            function valname(){
+                var vname=document.getElementById("username").value;
+                if(vname==""){
+                document.getElementById("name_er").innerHTML = "Please fill the username feild";
+                }
+                else if(vname.length<3){
+                    document.getElementById("name_er").innerHTML = "Username should have atleast 3 characters.";
+                }
+                else if(vname.charAt(0)>='a' && vname.charAt(0)<='z'){
+                    document.getElementById("name_er").innerHTML = "Username is correct.";
+                    
+                }
+                else if(vname.charAt(0)>='A' && vname.charAt(0)<='Z'){
+                    document.getElementById("name_er").innerHTML = "Username is correct.";
+                    
+                }
+                else if(vname.length>=3){
+                    document.getElementById("name_er").innerHTML = "Username should start with an alphabet.";
+                }
+
+            }
+
+            function valpass(){
+                var al=0;
+                var nu=0;
+                var i=0;
+                var vpass=document.getElementById("password").value;
+                if(vpass==""){
+                    document.getElementById("pass_er").innerHTML = "Please fill the password feild";
+                }
+                else if(vpass.length<6){
+                    document.getElementById("pass_er").innerHTML = "Password field should be atleast 6 characters in length";
+                }
+                else if(vpass.length>=6){
+                for(i=0;i<vpass.length;i++){
+                    if(vpass.charAt(i)>='0' && vpass.charAt(i)<='9')
+                    nu++;
+                    if(vpass.charAt(i)>='a' && vpass.charAt(i)<='z')
+                    al++;
+                    if(vpass.charAt(i)>='A' && vpass.charAt(i)<='Z')
+                    al++;
+                    if(al==0 || nu==0)
+                    document.getElementById("pass_er").innerHTML = "Password field should have both number and characters";
+                    else
+                    document.getElementById("pass_er").innerHTML = "";
+                }
+                }
+            }
+
+            function valmail(){
+                var vmail=document.getElementById("email").value;
+                if(vmail==""){
+                    document.getElementById("email_er").innerHTML = "Please fill the e-mail feild";
+                }
+                else if((vmail.indexOf('.') - vmail.indexOf('@') <=1) || vmail.indexOf('@')==0 || vmail.indexOf('.')==(vmail.length-1) || vmail.indexOf(' ')!=-1 ){
+                    document.getElementById("email_er").innerHTML = "Incorrect email format.";
+                }
+                else{
+                    document.getElementById("email_er").innerHTML = "";
+                }
+            }
+
+            function valage(){
+                var vage=document.getElementById("age").value;
+                if(vage==""){
+                    document.getElementById("age_er").innerHTML = "Please fill the age feild";
+                }
+                else if(vage<10 || vage>90){
+                    document.getElementById("age_er").innerHTML = "Age should be between 10 and 90.";
+                }
+                else{
+                    document.getElementById("age_er").innerHTML = "";
+                }
+            }
+        </script>
+
+    </head>
+    <body>
+        <div id="val">
+        <h1>Form Validation</h1>
+        <p>
+            <form action="" method="POST"  onsubmit="return verify(this.form)">
+                    <p>Username : <input type="text" name="username" id="username" onkeyup="valname()"/>
+                    <br/> <div id="name_er"></div></p>
+                    <p>Password : <input type="password" name="password" id="password" onkeyup="valpass()" />
+                    <br/> <div id="pass_er"></div> </p>
+                    <p>E-mail &emsp;: <input type="text" name="email" id="email" onkeyup="valmail()" />
+                    <br/> <div id="email_er"></div> </p>
+                    <p>Age &emsp;&emsp;: <input type="number" name="age" id="age" onkeyup="valage()" /> 
+                    <br/> <div id="age_er"></div></p>
+                    <p><input type="submit" value="submit"> <input type="reset" value="reset"> </p>
+                </ul>
+            </form>
+        </p>
+    </div>
+    </body>
+</html>
